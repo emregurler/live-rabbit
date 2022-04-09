@@ -29,7 +29,7 @@ export class Queue {
 
   makeUniqueQueueById() {
     if (this.queue.length > 1) {
-      const uniqueQueue = [...new Map(this.queue.map((item) => [item.id, item])).values()];
+      const uniqueQueue = this.queue.filter((v, i, a) => a.findIndex((v2) => v2.id === v.id) === i);
       this.queue = uniqueQueue;
     }
   }

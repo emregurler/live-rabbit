@@ -29,12 +29,17 @@ export class MessageQueuer {
     }, 500);
   }
 
+  stop() {
+    clearInterval(this.runner);
+  }
+
   takeValidMessage() {
     const nextMessage = this.messagesQueue.takeNext();
-    if (nextMessage.type === API_EVENT_TYPE.MESSAGE) {
+    if (nextMessage && nextMessage.type === API_EVENT_TYPE.MESSAGE) {
       if (Date.now() - nextMessage.timestamp.getTime() < MESSAGE_TIMEOUT_MS) {
         return nextMessage;
       } else {
+        console.warn('20 seconds passed');
         return this.takeValidMessage();
       }
     } else {
