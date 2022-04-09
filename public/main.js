@@ -6,13 +6,13 @@ import { MessageQueuer } from './MessageQueuer.js';
 const apiOptions = {
   seed: null,
   slowMode: true,
-  possibleDuplicateEvent: true,
+  possibleDuplicateEvent: false,
 };
 
 const api = new APIWrapper(apiOptions);
 
 const disableDuplication = true;
-const messageQueuer = new MessageQueuer(disableDuplication);
+const messageQueuer = new MessageQueuer(disableDuplication, false);
 
 messageQueuer.run();
 
