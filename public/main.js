@@ -5,7 +5,7 @@ import { EventQueue } from './EventQueue.js';
 
 const apiOptions = {
   seed: null,
-  slowMode: true,
+  slowMode: false,
   possibleDuplicateEvent: true,
 };
 

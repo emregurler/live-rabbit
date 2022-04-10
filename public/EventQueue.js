@@ -20,6 +20,10 @@ export class EventQueue {
         this.#queue.push(event);
       }
     });
+
+    // INFO:
+    // handling duplicate events for only current queue + incoming events.
+    // if case is handling all events from the beginning, js Set()  will be implemented
     this.#queue = this.#getUniqueList();
   }
 
