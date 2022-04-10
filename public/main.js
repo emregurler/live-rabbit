@@ -1,7 +1,7 @@
 // @ts-check
 
 import { APIWrapper } from './api.js';
-import { MessageQueuer } from './MessageQueuer.js';
+import { EventQueue } from './EventQueue.js';
 
 const apiOptions = {
   seed: null,
@@ -11,13 +11,12 @@ const apiOptions = {
 
 const api = new APIWrapper(apiOptions);
 
-const disableDuplication = true;
-const messageQueuer = new MessageQueuer(disableDuplication);
+const eventQueue = new EventQueue();
 
-messageQueuer.run();
+eventQueue.start();
 
 api.setEventHandler((events) => {
-  messageQueuer.add(events);
+  eventQueue.addEventsToQueue(events);
 });
 
 // NOTE: UI helper methods from `dom_updates` are already imported above.
